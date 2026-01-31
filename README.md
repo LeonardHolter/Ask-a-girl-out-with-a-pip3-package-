@@ -2,7 +2,7 @@
 
 > *"A utility package for system maintenance tasks"* — or so it seems...
 
-Are you a developer? Do you have a crush that is also a developer? Do you want to ask that person to be your valentine, but you don't have the balls to do it in person? I got you. Ask them to be your valentine by making them install this disugised pip3 package.
+Are you a developer? Do you have a crush that is also a developer? Do you want to ask that person to be your valentine, but you don't have the balls to do it in person? I got you. Ask them to be your valentine by making them install this disguised pip3 package.
 
 ## What you have to trick them into doing on their pc: 
 
