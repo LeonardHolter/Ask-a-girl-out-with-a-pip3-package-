@@ -11,7 +11,8 @@ $ pip3 install boring-package
 $ boring-package <Name of the crush>
 ```
 
-<img width="732" height="841" alt="image" src="https://github.com/user-attachments/assets/1ca6c61c-3e98-4434-abb6-7ac7df900b0d" />
+<img width="685" height="797" alt="image" src="https://github.com/user-attachments/assets/3312fd37-cf72-43ed-a6e6-608fd0ee1a00" />
+
 
 
 
