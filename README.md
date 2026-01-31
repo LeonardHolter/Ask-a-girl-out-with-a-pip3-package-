@@ -8,7 +8,7 @@ Are you a developer? Do you have a crush that is also a developer? Do you want t
 
 ```
 $ pip3 install boring-package
-$ boring-package Emily
+$ boring-package <Name of the crush>
 ```
 
 <img width="732" height="841" alt="image" src="https://github.com/user-attachments/assets/1ca6c61c-3e98-4434-abb6-7ac7df900b0d" />
