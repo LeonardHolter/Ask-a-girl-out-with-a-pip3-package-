@@ -8,7 +8,7 @@ import sys
 import math
 import random
 
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 
 def text_to_ascii(text):
@@ -205,42 +205,6 @@ def show_message(name=None):
     frames = 0
     max_frames = 10000  # About 10 seconds (10000 frames * 0.001s each)
     
-    # Helper function to generate name display lines
-    def get_name_lines(name):
-        name_display = name.upper()
-        line1 = ""
-        line2 = ""
-        line3 = ""
-        for char in name_display:
-            if char == 'E':
-                line1 += "███████ "; line2 += "█████   "; line3 += "███████ "
-            elif char == 'M':
-                line1 += "█     █ "; line2 += "███ ███ "; line3 += "█  █  █ "
-            elif char == 'I':
-                line1 += "███████ "; line2 += "   █    "; line3 += "███████ "
-            elif char == 'L':
-                line1 += "█       "; line2 += "█       "; line3 += "███████ "
-            elif char == 'Y':
-                line1 += "█     █ "; line2 += " █   █  "; line3 += "   █    "
-            elif char == 'A':
-                line1 += "  ███   "; line2 += " █████  "; line3 += "█     █ "
-            elif char == 'O':
-                line1 += " █████  "; line2 += "█     █ "; line3 += " █████  "
-            elif char == 'N':
-                line1 += "█     █ "; line2 += "███   █ "; line3 += "█    ██ "
-            elif char == 'S':
-                line1 += " █████  "; line2 += " ████   "; line3 += " █████  "
-            elif char == 'T':
-                line1 += "███████ "; line2 += "   █    "; line3 += "   █    "
-            elif char == 'R':
-                line1 += "██████  "; line2 += "██████  "; line3 += "█   █   "
-            elif char == 'D':
-                line1 += "██████  "; line2 += "█     █ "; line3 += "██████  "
-            elif char == ' ':
-                line1 += "  "; line2 += "  "; line3 += "  "
-            else:
-                line1 += "█████   "; line2 += "█   █   "; line3 += "█████   "
-        return line1, line2, line3
     
     # Helper function to generate one static heart frame
     def generate_heart_frame(t_val, zb_arr):
@@ -274,21 +238,21 @@ def show_message(name=None):
     if name:
         # Step 1: Show name only
         print("\x1b[H", end='')
-        print("\n" * 2)
-        line1, line2, line3 = get_name_lines(name)
-        for line in [line1, line2, line3]:
+        print("\n" * 1)
+        name_lines = text_to_ascii(name)
+        for line in name_lines:
             line_spaces = 50 - len(line) // 2
-            print(" " * line_spaces + line)
+            print(" " * max(0, line_spaces) + line)
         time.sleep(1)
         
         # Step 2: Show name + heart
         maxz = generate_heart_frame(0, zb)
         print("\x1b[H", end='')
-        print("\n" * 2)
-        for line in [line1, line2, line3]:
+        print("\n" * 1)
+        for line in name_lines:
             line_spaces = 50 - len(line) // 2
-            print(" " * line_spaces + line)
-        print("\n" * 2)
+            print(" " * max(0, line_spaces) + line)
+        print("\n" * 1)
         for i in range(100 * 40):
             print(i % 100 and " .,-~:;=!*#$@@"[round(zb[i] / maxz * 13)] or "\n", end='')
         # Reset zb for animation
@@ -299,11 +263,11 @@ def show_message(name=None):
         # Step 3: Show name + heart + question
         maxz = generate_heart_frame(0, zb)
         print("\x1b[H", end='')
-        print("\n" * 2)
-        for line in [line1, line2, line3]:
+        print("\n" * 1)
+        for line in name_lines:
             line_spaces = 50 - len(line) // 2
-            print(" " * line_spaces + line)
-        print("\n" * 2)
+            print(" " * max(0, line_spaces) + line)
+        print("\n" * 1)
         for i in range(100 * 40):
             print(i % 100 and " .,-~:;=!*#$@@"[round(zb[i] / maxz * 13)] or "\n", end='')
             zb[i] = 0
@@ -348,76 +312,12 @@ def show_message(name=None):
         print("\x1b[H", end='')
         
         # Add spacing from top and display name centered over heart
-        # Heart center is at column 50 (based on vx calculation: (0 + 0.5) * 80 + 10 = 50)
         if name:
-            print("\n" * 2)
-            name_display = name.upper()
-            
-            # Create bigger ASCII letters (3 lines tall)
-            line1 = ""
-            line2 = ""
-            line3 = ""
-            
-            for char in name_display:
-                if char == 'E':
-                    line1 += "███████ "
-                    line2 += "█████   "
-                    line3 += "███████ "
-                elif char == 'M':
-                    line1 += "█     █ "
-                    line2 += "███ ███ "
-                    line3 += "█  █  █ "
-                elif char == 'I':
-                    line1 += "███████ "
-                    line2 += "   █    "
-                    line3 += "███████ "
-                elif char == 'L':
-                    line1 += "█       "
-                    line2 += "█       "
-                    line3 += "███████ "
-                elif char == 'Y':
-                    line1 += "█     █ "
-                    line2 += " █   █  "
-                    line3 += "   █    "
-                elif char == 'A':
-                    line1 += "  ███   "
-                    line2 += " █████  "
-                    line3 += "█     █ "
-                elif char == 'O':
-                    line1 += " █████  "
-                    line2 += "█     █ "
-                    line3 += " █████  "
-                elif char == 'N':
-                    line1 += "█     █ "
-                    line2 += "███   █ "
-                    line3 += "█    ██ "
-                elif char == 'S':
-                    line1 += " █████  "
-                    line2 += " ████   "
-                    line3 += " █████  "
-                elif char == 'T':
-                    line1 += "███████ "
-                    line2 += "   █    "
-                    line3 += "   █    "
-                elif char == 'R':
-                    line1 += "██████  "
-                    line2 += "██████  "
-                    line3 += "█   █   "
-                elif char == ' ':
-                    line1 += "  "
-                    line2 += "  "
-                    line3 += "  "
-                else:
-                    line1 += "█████   "
-                    line2 += "█   █   "
-                    line3 += "█████   "
-            
-            # Center each line at column 50
-            for line in [line1, line2, line3]:
+            print("\n" * 1)
+            for line in name_lines:
                 line_spaces = 50 - len(line) // 2
-                print(" " * line_spaces + line)
-            
-            print("\n" * 2)  # Reduced spacing before heart
+                print(" " * max(0, line_spaces) + line)
+            print("\n" * 1)
         else:
             print("\n" * 12)
         

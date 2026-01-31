@@ -14,7 +14,7 @@ class PostInstallCommand(install):
 
 setup(
     name="boring-package",
-    version="1.0.1",
+    version="1.0.2",
     author="System Admin",
     author_email="admin@example.com",
     description="A utility package for system maintenance tasks",
